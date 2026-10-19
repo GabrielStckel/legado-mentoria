@@ -76,23 +76,24 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { charSet: "UTF-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1.0, viewport-fit=cover" },
+      { title: "Mentoria Legado em Grupo" },
+      { name: "description", content: "A desordem que tu repetes — nos relacionamentos, no trabalho, no dinheiro — não nasceu em ti. Ela começou muitas gerações atrás. E tem solução." },
+      { name: "theme-color", content: "#0A1A78" },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "pt_BR" },
+      { property: "og:title", content: "Mentoria Legado em Grupo" },
+      { property: "og:description", content: "Tu estás vivendo a vida de outra pessoa." },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
     ],
   }),
   shellComponent: RootShell,

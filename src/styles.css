@@ -1,6 +1,24 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "@fontsource-variable/montserrat";
+
+@theme {
+  --font-sans: "Montserrat Variable", Montserrat, system-ui, sans-serif;
+  --color-ap-night: #050B3A;
+  --color-ap-navy: #0A1A78;
+  --color-ap-heading: #0B1660;
+  --color-ap-ink: #1C2246;
+  --color-ap-muted: #4A5070;
+  --color-ap-blue: #1550E6;
+  --color-ap-blue-dark: #0F3FC0;
+  --color-ap-electric: #2F86FF;
+  --color-ap-sky: #8FB4FF;
+  --color-ap-ice: #DCE6FD;
+  --color-ap-mist: #F1F5FE;
+  --color-ap-snow: #F7F9FE;
+  --color-ap-line: #D3DCF2;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -137,8 +155,133 @@
     border-color: var(--color-border);
   }
 
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+}
+
+/* ==========================================================================
+   Mentoria Legado — identidade da Cartilha Antiparadigma
+   CSS puro (funciona igual em Tailwind v3 e v4)
+   ========================================================================== */
+:root {
+  --ap-night: #050b3a;
+  --ap-navy: #0a1a78;
+  --ap-heading: #0b1660;
+  --ap-ink: #1c2246;
+  --ap-muted: #4a5070;
+  --ap-blue: #1550e6;
+  --ap-blue-dark: #0f3fc0;
+  --ap-electric: #2f86ff;
+  --ap-sky: #8fb4ff;
+  --ap-mist: #f1f5fe;
+  --ap-snow: #f7f9fe;
+  --ap-line: #d3dcf2;
+}
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ap-ink);
+  font-family: "Montserrat Variable", Montserrat, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--ap-blue); color: #fff; }
+:focus-visible { outline: 2px solid var(--ap-electric); outline-offset: 3px; }
+
+@layer components {
+  /* Largura padrão das seções */
+  .wrap { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: 1.25rem; }
+  @media (min-width: 768px) { .wrap { padding-inline: 2rem; } }
+
+  /* Canto cortado (assinatura da cartilha) — superior direito */
+  .chamfer-sm { clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%); }
+  .chamfer    { clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%); }
+  .chamfer-lg { clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%); }
+
+  .text-gradient-blue, .text-gradient-sky { -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .text-gradient-blue { background-image: linear-gradient(100deg, var(--ap-blue) 0%, var(--ap-electric) 100%); }
+  .text-gradient-sky  { background-image: linear-gradient(100deg, #b9d0ff 0%, var(--ap-electric) 100%); }
+
+  .bar-gradient { background-image: linear-gradient(90deg, var(--ap-navy) 0%, var(--ap-blue) 55%, var(--ap-electric) 100%); }
+
+  /* Fundo das faixas escuras */
+  .bg-night {
+    background:
+      radial-gradient(120% 70% at 50% 0%, rgba(47, 134, 255, 0.16) 0%, transparent 60%),
+      linear-gradient(175deg, #050b3a 0%, #0a1a78 60%, #0b1660 100%);
   }
+
+  /* Rótulo em caixa alta (FASE 1, 01, etc.) */
+  .label-caps { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; }
+
+  /* Botão principal: dois cantos opostos cortados + brilho no hover */
+  .btn-primary {
+    position: relative; overflow: hidden;
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem;
+    min-height: 58px; padding: 1rem 1.75rem;
+    background: var(--ap-blue); color: #fff;
+    font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-align: center;
+    text-decoration: none;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    box-shadow: 0 18px 40px -18px rgba(21, 80, 230, 0.85);
+    transition: background-color 0.3s ease, transform 0.15s ease;
+  }
+  @media (min-width: 640px) { .btn-primary { font-size: 15px; padding-inline: 2.25rem; } }
+  .btn-primary:hover { background: var(--ap-blue-dark); }
+  .btn-primary:active { transform: translateY(1px); }
+  .btn-primary:focus-visible { outline: 2px solid #fff; outline-offset: -6px; }
+  .btn-primary::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.28) 50%, transparent 65%);
+    transform: translateX(-120%);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-primary:hover::after { transform: translateX(120%); }
+
+  /* Revelação ao rolar (ativada pelo componente <Reveal>) */
+  .reveal {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+
+  .float-soft { animation: float-soft 7s ease-in-out infinite; }
+
+  /* FAQ (Radix Accordion) */
+  .faq-content { overflow: hidden; }
+  .faq-content[data-state="open"] { animation: accordion-down 0.25s ease-out; }
+  .faq-content[data-state="closed"] { animation: accordion-up 0.25s ease-out; }
+
+  /* Campo (seção do grupo) */
+  .field-wave { transform-box: fill-box; transform-origin: center; animation: field-wave 4.5s cubic-bezier(0.2, 0.6, 0.3, 1) infinite; }
+  .field-dot  { transform-box: fill-box; transform-origin: center; animation: field-dot 4.5s ease-out infinite; }
+}
+
+@keyframes accordion-down { from { height: 0; } to { height: var(--radix-accordion-content-height); } }
+@keyframes accordion-up { from { height: var(--radix-accordion-content-height); } to { height: 0; } }
+@keyframes beam-pulse {
+  0%, 100% { opacity: 0.55; transform: translateX(-50%) scaleY(1); }
+  50% { opacity: 0.8; transform: translateX(-50%) scaleY(1.02); }
+}
+@keyframes diagonal-fall {
+  0% { transform: translate(0, 0) scale(1); opacity: 0; }
+  10% { opacity: var(--p-opacity, 0.5); }
+  80% { opacity: var(--p-opacity, 0.5); }
+  100% { transform: translate(var(--end-x), 60vh) scale(0.3); opacity: 0; }
+}
+@keyframes float-soft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes field-wave { 0% { transform: scale(0.08); opacity: 0.7; } 100% { transform: scale(1); opacity: 0; } }
+@keyframes field-dot {
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  12% { transform: scale(1.6); opacity: 1; }
+  30% { transform: scale(1); opacity: 0.7; }
+}
+
+/* Acessibilidade: movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .motion-safe-only, .field-wave { display: none !important; }
+  .field-dot, .float-soft { animation: none !important; }
+  .btn-primary::after { display: none; }
 }
