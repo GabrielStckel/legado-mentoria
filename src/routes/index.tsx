@@ -1,24 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
+import Index from "@/pages/Index";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Mentoria Legado em Grupo" },
+      { name: "description", content: "A desordem que tu repetes — nos relacionamentos, no trabalho, no dinheiro — não nasceu em ti. Ela começou muitas gerações atrás. E tem solução." },
+      { property: "og:title", content: "Mentoria Legado em Grupo" },
+      { property: "og:description", content: "Tu estás vivendo a vida de outra pessoa." },
+      { property: "og:image", content: "/og-legado.jpg" },
+    ],
+  }),
   component: Index,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
