@@ -8,6 +8,8 @@ import Ritmo from "@/components/legado/Ritmo";
 import Recebes from "@/components/legado/Recebes";
 import Cronograma from "@/components/legado/Cronograma";
 import ParaQuem from "@/components/legado/ParaQuem";
+import Mentor from "@/components/legado/Mentor";
+import Oferta from "@/components/legado/Oferta";
 
 export default function Index() {
   return (
@@ -23,6 +25,8 @@ export default function Index() {
         <Recebes />
         <Cronograma />
         <ParaQuem />
+        <Mentor />
+        <Oferta />
       </main>
     </>
   );
