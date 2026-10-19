@@ -10,6 +10,9 @@ import Cronograma from "@/components/legado/Cronograma";
 import ParaQuem from "@/components/legado/ParaQuem";
 import Mentor from "@/components/legado/Mentor";
 import Oferta from "@/components/legado/Oferta";
+import Faq from "@/components/legado/Faq";
+import CtaFinal from "@/components/legado/CtaFinal";
+import StickyCta from "@/components/legado/StickyCta";
 
 export default function Index() {
   return (
@@ -27,7 +30,10 @@ export default function Index() {
         <ParaQuem />
         <Mentor />
         <Oferta />
+        <Faq />
       </main>
+      <CtaFinal />
+      <StickyCta />
     </>
   );
 }
