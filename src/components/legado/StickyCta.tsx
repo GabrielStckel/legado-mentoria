@@ -13,7 +13,7 @@ export default function StickyCta() {
     const state: Record<string, boolean> = { "hero-cta": true, oferta: false, "cta-final": false };
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => (state[e.target.id] = e.isIntersecting));
-      setShow(!state["hero-cta"] && !state.oferta && !state["cta-final"]);
+      setShow(!state["hero-cta"] && !state["oferta"] && !state["cta-final"]);
     });
     ids.forEach((id) => {
       const el = document.getElementById(id);
