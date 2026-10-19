@@ -1,43 +1,41 @@
 import { percurso } from "@/content/legado";
-import { Diamond, Reveal, SectionHeading } from "./primitives";
-import { cn } from "@/lib/utils";
-
-const TOP = ["border-ap-heading", "border-ap-blue", "border-ap-electric"];
-const STEP = ["lg:mt-32", "lg:mt-16", "lg:mt-0"]; // degraus subindo da esquerda para a direita
+import { Diamond, Reveal, SectionHead } from "./primitives";
 
 export default function Percurso() {
   return (
-    <section aria-labelledby="percurso-title" className="bg-white py-20 md:py-28">
+    <section aria-labelledby="percurso-title" className="sec sec-paper">
       <div className="wrap">
-        <div className="max-w-3xl">
-          <SectionHeading id="percurso-title">{percurso.title}</SectionHeading>
-          <Reveal as="p" className="text-[17px] leading-[1.85] text-ap-ink md:text-[19px]">
-            {percurso.intro}
-          </Reveal>
-        </div>
+        <SectionHead id="percurso-title">{percurso.title}</SectionHead>
+        <Reveal as="p" className="col t-body jt">
+          {percurso.intro}
+        </Reveal>
 
-        <ol className="relative mt-12 grid gap-5 md:mt-16 lg:grid-cols-3 lg:items-start">
+        <ol className="mt-12 grid gap-5 lg:grid-cols-3">
           {percurso.phases.map((f, i) => (
-            <Reveal as="li" key={f.label} delay={i * 140} className={cn("chamfer relative border-t-[3px] bg-ap-mist p-7 md:p-8", TOP[i], STEP[i])}>
+            <Reveal
+              as="li"
+              key={f.label}
+              delay={i * 90}
+              className="card border-t-2 border-t-lg-navy"
+            >
               <div className="flex items-center justify-between">
-                <span className="label-caps text-ap-heading">{f.label}</span>
+                <span className="t-label text-lg-blue">{f.label}</span>
                 <span className="flex gap-1.5" aria-hidden>
                   {Array.from({ length: i + 1 }).map((_, k) => (
-                    <Diamond key={k} />
+                    <Diamond key={k} className="bg-lg-navy" />
                   ))}
                 </span>
               </div>
-              <h3 className="mt-6 text-[22px] font-extrabold uppercase leading-tight tracking-[0.01em] text-ap-heading md:text-[24px]">{f.name}</h3>
-              <p className="mt-4 text-[16px] leading-[1.75] text-ap-ink/85">{f.description}</p>
+              <h3 className="t-card mt-4 text-lg-navy">{f.name}</h3>
+              <p className="t-small pretty mt-3 text-lg-ink/85">{f.description}</p>
             </Reveal>
           ))}
         </ol>
 
-        {/* Pergunta-guia */}
-        <Reveal className="mx-auto mt-20 max-w-3xl text-center md:mt-24">
-          <p className="text-[17px] leading-[1.7] text-ap-ink md:text-[19px]">
+        <Reveal className="col mt-14 text-center md:mt-16">
+          <p className="t-body text-lg-muted">
             {percurso.guide.before}
-            <span className="my-4 block text-[48px] font-extrabold leading-none tracking-[-0.02em] text-gradient-blue md:text-[76px]">
+            <span className="t-title my-3 block italic text-lg-navy">
               {percurso.guide.question}
             </span>
             {percurso.guide.after}

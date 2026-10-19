@@ -1,46 +1,49 @@
 import { legado } from "@/content/legado";
-import { Emph, Reveal, SectionHeading } from "./primitives";
+import { Emph, Reveal, SectionHead } from "./primitives";
 import sphere from "@/assets/legado/simbolo-esfera.webp";
 
 export default function Legado() {
   return (
-    <section aria-labelledby="legado-title" className="bg-white py-20 md:py-28">
+    <section aria-labelledby="legado-title" className="sec sec-paper">
       <div className="wrap">
-        <div className="max-w-3xl">
-          <SectionHeading id="legado-title" caps>
-            {legado.title}
-          </SectionHeading>
-          <Reveal as="p" className="text-[17px] leading-[1.85] text-ap-ink md:text-[19px]">
-            <Emph
-              text={legado.intro}
-              strong={["10 anos", "2.000 horas", "3.000 clientes e alunos"]}
-              strongClass="font-bold text-ap-blue"
-            />
-          </Reveal>
-        </div>
+        <SectionHead id="legado-title">{legado.title}</SectionHead>
 
-        {/* Bloco CONSCIUS — navy, como na página 4 da cartilha */}
-        <Reveal className="chamfer-lg relative mt-12 overflow-hidden border-l-[4px] border-ap-electric bg-ap-navy p-7 md:mt-16 md:p-10">
-          <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-8">
-            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-white md:h-24 md:w-24">
-              <img src={sphere} alt="" aria-hidden loading="lazy" width={360} height={348} className="h-[78%] w-[78%] object-contain" />
-            </div>
-            <p className="text-[17px] leading-[1.75] text-white/90 md:text-[20px]">
-              <Emph text={legado.conscius} strong={["CONSCIUS"]} strongClass="font-extrabold tracking-[0.04em] text-white" />
-            </p>
-          </div>
+        <Reveal as="p" className="col t-body jt">
+          <Emph
+            text={legado.intro}
+            strong={["10 anos", "2.000 horas", "3.000 clientes e alunos"]}
+          />
         </Reveal>
 
-        {/* Quatro movimentos */}
-        <ol className="relative mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+        <Reveal className="mx-auto mt-12 flex max-w-[56rem] flex-col items-center gap-6 rounded-[4px] bg-lg-navy p-6 text-white sm:flex-row sm:gap-8 md:p-10">
+          <span className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-white">
+            <img
+              src={sphere}
+              alt=""
+              aria-hidden
+              loading="lazy"
+              width={360}
+              height={348}
+              className="h-[78%] w-[78%] object-contain"
+            />
+          </span>
+          <p className="t-body jt-sm text-white/85">
+            <Emph
+              text={legado.conscius}
+              strong={["CONSCIUS"]}
+              strongClass="font-semibold tracking-[0.06em] text-white"
+            />
+          </p>
+        </Reveal>
+
+        <ol className="mx-auto mt-5 grid max-w-[56rem] gap-5 sm:grid-cols-2">
           {legado.movements.map((m, i) => (
-            <Reveal as="li" key={m.title} delay={i * 110} className="chamfer group relative bg-ap-mist p-6 md:p-7">
-              <span aria-hidden className="block text-[44px] font-extralight leading-none text-ap-blue md:text-[52px]">
+            <Reveal as="li" key={m.title} delay={(i % 2) * 80} className="card">
+              <span className="t-label text-lg-blue" aria-hidden>
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-5 text-[15px] font-extrabold uppercase tracking-[0.12em] text-ap-heading">{m.title}</h3>
-              <p className="mt-2.5 text-[15px] leading-[1.7] text-ap-ink/85">{m.description}</p>
-              <span aria-hidden className="absolute bottom-0 left-0 h-[3px] w-0 bg-ap-blue transition-all duration-500 group-hover:w-full" />
+              <h3 className="t-card mt-2 text-lg-navy">{m.title}</h3>
+              <p className="t-small pretty mt-2 text-lg-ink/85">{m.description}</p>
             </Reveal>
           ))}
         </ol>

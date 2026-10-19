@@ -79,13 +79,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "UTF-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1.0, viewport-fit=cover" },
       { title: "Mentoria Legado em Grupo" },
-      { name: "description", content: "A desordem que tu repetes — nos relacionamentos, no trabalho, no dinheiro — não nasceu em ti. Ela começou muitas gerações atrás. E tem solução." },
-      { name: "theme-color", content: "#0A1A78" },
+      {
+        name: "description",
+        content:
+          "A desordem que tu repetes — nos relacionamentos, no trabalho, no dinheiro — não nasceu em ti. Ela começou muitas gerações atrás. E tem solução.",
+      },
+      { name: "theme-color", content: "#0B1660" },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "pt_BR" },
       { property: "og:title", content: "Mentoria Legado em Grupo" },
       { property: "og:description", content: "Tu estás vivendo a vida de outra pessoa." },
+      { property: "og:image", content: "https://legado-mentoria.lovable.app/og-legado.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://legado-mentoria.lovable.app/og-legado.jpg" },
     ],
     links: [
       {
@@ -104,7 +112,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>

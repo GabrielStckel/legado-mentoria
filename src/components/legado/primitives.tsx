@@ -1,4 +1,13 @@
-import { ReactNode, useEffect, useMemo, useRef, useState, ElementType, Fragment } from "react";
+import {
+  Fragment,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  ElementType,
+  CSSProperties,
+} from "react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buildCheckoutUrl, trackCheckoutClick } from "@/lib/checkout";
@@ -20,6 +29,10 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (!("IntersectionObserver" in window)) {
+      setVisible(true);
+      return;
+    }
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
@@ -27,65 +40,53 @@ export function Reveal({
           io.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
   return (
-    <Tag ref={ref} className={cn("reveal", visible && "is-visible", className)} style={{ transitionDelay: `${delay}ms` }}>
+    <Tag
+      ref={ref}
+      className={cn("reveal", visible && "is-visible", className)}
+      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+    >
       {children}
     </Tag>
   );
 }
 
-/* ---------- Losango (◆) da cartilha ---------- */
+/* ---------- Losango (marcador da cartilha) ---------- */
 export function Diamond({ className }: { className?: string }) {
-  return <span aria-hidden className={cn("inline-block h-[7px] w-[7px] shrink-0 rotate-45 bg-ap-blue", className)} />;
+  return <span aria-hidden className={cn("diamond", className)} />;
 }
 
-/* ---------- Título de seção: barra azul curta + fio (padrão da cartilha) ---------- */
-export function SectionHeading({
-  children,
-  dark = false,
-  center = false,
-  caps = false,
-  className,
+/* ---------- Cabeçalho de seção: título centralizado + fio azul ---------- */
+export function SectionHead({
   id,
+  children,
+  as: Tag = "h2",
 }: {
-  children: ReactNode;
-  dark?: boolean;
-  center?: boolean;
-  caps?: boolean;
-  className?: string;
   id?: string;
+  children: ReactNode;
+  as?: "h1" | "h2";
 }) {
   return (
-    <div className={cn("mb-10 md:mb-14", center && "text-center", className)}>
-      <h2
-        id={id}
-        className={cn(
-          "text-balance font-extrabold leading-[1.12] tracking-[-0.015em]",
-          caps ? "text-[26px] uppercase tracking-[0.02em] md:text-[34px]" : "text-[30px] md:text-[44px]",
-          dark ? "text-white" : "text-ap-heading",
-        )}
-      >
+    <header className="sec-head">
+      <Tag id={id} className={Tag === "h1" ? "t-display" : "t-title"}>
         {children}
-      </h2>
-      <div className={cn("mt-6 flex items-center", center && "justify-center")} aria-hidden>
-        <span className={cn("h-[3px] w-16", dark ? "bg-ap-electric" : "bg-ap-blue")} />
-        {!center && <span className={cn("h-px flex-1", dark ? "bg-white/15" : "bg-ap-line")} />}
-      </div>
-    </div>
+      </Tag>
+      <span className="rule" aria-hidden />
+    </header>
   );
 }
 
-/* ---------- Texto com destaques (negrito / itálico) SEM alterar a copy ---------- */
+/* ---------- Destaques (negrito / itálico) SEM alterar a copy ---------- */
 export function Emph({
   text,
   strong = [],
   italic = [],
-  strongClass = "font-bold text-ap-heading",
+  strongClass = "font-semibold text-lg-navy",
 }: {
   text: string;
   strong?: string[];
@@ -106,26 +107,13 @@ export function Emph({
             {p}
           </strong>
         ) : italic.includes(p) ? (
-          <em key={i} className="font-semibold italic text-ap-blue">
+          <em key={i} className="italic">
             {p}
           </em>
         ) : (
           <Fragment key={i}>{p}</Fragment>
         ),
       )}
-    </>
-  );
-}
-
-/* ---------- Destaque em gradiente de um trecho final ---------- */
-export function Highlight({ text, highlight, className }: { text: string; highlight: string; className?: string }) {
-  const i = text.lastIndexOf(highlight);
-  if (i < 0) return <>{text}</>;
-  return (
-    <>
-      {text.slice(0, i)}
-      <span className={className ?? "text-gradient-blue"}>{highlight}</span>
-      {text.slice(i + highlight.length)}
     </>
   );
 }
@@ -154,55 +142,44 @@ export function CtaButton({
       id={id}
       href={href}
       onClick={() => external && trackCheckoutClick(position)}
-      className={cn("btn-primary", className)}
+      className={cn("btn", className)}
     >
-      <span className="relative z-[1]">{label}</span>
-      <ArrowRight aria-hidden className="relative z-[1] h-5 w-5 shrink-0" strokeWidth={2.4} />
+      <span>{label}</span>
+      <ArrowRight aria-hidden className="h-4 w-4 shrink-0" strokeWidth={2.25} />
     </a>
   );
 }
 
-/* ---------- Fundo escuro com feixe de luz e partículas (do Observatório) ---------- */
+/* ---------- Fundo das faixas escuras: feixe de luz + partículas (mesmo do Observatório) ---------- */
 const PARTICLES = [
-  { endX: "-30vw", delay: "0s", dur: "12s", size: 3, o: 0.45 },
-  { endX: "28vw", delay: "2s", dur: "11s", size: 3, o: 0.5 },
-  { endX: "-22vw", delay: "4s", dur: "14s", size: 4, o: 0.4 },
-  { endX: "18vw", delay: "1.5s", dur: "13s", size: 3, o: 0.45 },
-  { endX: "-36vw", delay: "5s", dur: "14s", size: 3, o: 0.35 },
-  { endX: "35vw", delay: "3s", dur: "11.5s", size: 3, o: 0.5 },
-  { endX: "-14vw", delay: "6s", dur: "13s", size: 3, o: 0.35 },
-  { endX: "24vw", delay: "7s", dur: "12s", size: 3, o: 0.4 },
+  { endX: "-30vw", delay: "0s", dur: "12s", size: 3, o: 0.4 },
+  { endX: "28vw", delay: "2s", dur: "11s", size: 3, o: 0.45 },
+  { endX: "-22vw", delay: "4s", dur: "14s", size: 3, o: 0.35 },
+  { endX: "18vw", delay: "1.5s", dur: "13s", size: 3, o: 0.4 },
+  { endX: "-35vw", delay: "5s", dur: "14s", size: 3, o: 0.3 },
+  { endX: "35vw", delay: "3s", dur: "11.5s", size: 3, o: 0.4 },
 ];
 
-export function NightBackdrop({ beam = true }: { beam?: boolean }) {
+export function NightBackdrop() {
   const [count, setCount] = useState(0);
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const mobile = window.matchMedia("(max-width: 768px)").matches;
-    setCount(reduced ? 0 : mobile ? 4 : PARTICLES.length);
+    setCount(reduced ? 0 : mobile ? 3 : PARTICLES.length);
   }, []);
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      {beam && (
-        <div className="motion-safe-only absolute inset-0" style={{ filter: "blur(4px)" }}>
-          <div
-            className="absolute left-1/2 top-0 h-full w-[340px] opacity-[0.22] md:w-[560px]"
-            style={{
-              background: "linear-gradient(180deg, rgba(143,180,255,0.55) 0%, rgba(47,134,255,0.18) 45%, transparent 100%)",
-              clipPath: "polygon(35% 0%, 65% 0%, 92% 100%, 8% 100%)",
-              animation: "beam-pulse 8s ease-in-out infinite",
-            }}
-          />
-          <div
-            className="absolute left-1/2 top-0 h-full w-[120px] opacity-[0.14] md:w-[190px]"
-            style={{
-              background: "linear-gradient(180deg, rgba(220,232,255,0.8) 0%, rgba(47,134,255,0.15) 55%, transparent 100%)",
-              clipPath: "polygon(30% 0%, 70% 0%, 86% 100%, 14% 100%)",
-              animation: "beam-pulse 8s ease-in-out infinite",
-            }}
-          />
-        </div>
-      )}
+      <div className="motion-safe-only absolute inset-0" style={{ filter: "blur(4px)" }}>
+        <div
+          className="absolute left-1/2 top-0 h-full w-[320px] opacity-[0.16] md:w-[520px]"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(200,214,255,0.5) 0%, rgba(21,80,230,0.18) 45%, transparent 100%)",
+            clipPath: "polygon(36% 0%, 64% 0%, 90% 100%, 10% 100%)",
+            animation: "beam-pulse 9s ease-in-out infinite",
+          }}
+        />
+      </div>
       {PARTICLES.slice(0, count).map((p, i) => (
         <span
           key={i}
@@ -214,13 +191,13 @@ export function NightBackdrop({ beam = true }: { beam?: boolean }) {
               left: "50%",
               top: "-4%",
               opacity: 0,
-              background: "#b9d0ff",
-              boxShadow: "0 0 8px 3px rgba(47,134,255,0.45)",
+              background: "#dfe7ff",
+              boxShadow: "0 0 6px 2px rgba(200,214,255,0.35)",
               animation: `diagonal-fall ${p.dur} ease-out infinite ${p.delay}`,
               willChange: "transform, opacity",
               "--end-x": p.endX,
               "--p-opacity": p.o,
-            } as React.CSSProperties
+            } as CSSProperties
           }
         />
       ))}

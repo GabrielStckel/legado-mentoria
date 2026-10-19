@@ -13,7 +13,8 @@ export function buildCheckoutUrl(): string {
     const url = new URL(CHECKOUT_URL);
     const current = new URLSearchParams(window.location.search);
     current.forEach((value, key) => {
-      if (PASS_THROUGH_PARAMS.test(key) && !url.searchParams.has(key)) url.searchParams.set(key, value);
+      if (PASS_THROUGH_PARAMS.test(key) && !url.searchParams.has(key))
+        url.searchParams.set(key, value);
     });
     return url.toString();
   } catch {
@@ -28,8 +29,8 @@ export function trackCheckoutClick(position: string) {
   }
 }
 
-/** Variação de headline para teste A/B: ?h=1 | ?h=2 | ?h=3 */
-export function headlineIndex(total: number): number {
-  const n = Number(new URLSearchParams(window.location.search).get("h"));
+/** Variação de headline para teste A/B: ?h=1 | ?h=2 | ?h=3 (funciona no SSR, sem piscar) */
+export function headlineIndexFrom(value: unknown, total: number): number {
+  const n = Number(value);
   return Number.isInteger(n) && n >= 1 && n <= total ? n - 1 : 0;
 }

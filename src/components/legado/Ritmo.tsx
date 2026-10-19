@@ -1,51 +1,76 @@
+import { useEffect, useRef, useState } from "react";
 import { ritmo } from "@/content/legado";
-import { Diamond, Emph, Reveal, SectionHeading } from "./primitives";
-import { cn } from "@/lib/utils";
+import { Emph, Reveal, SectionHead } from "./primitives";
 
+/* Linha do tempo vertical com preenchimento progressivo (mesmo recurso do Observatório) */
 export default function Ritmo() {
-  return (
-    <section aria-labelledby="ritmo-title" className="bg-ap-snow py-20 md:py-28">
-      <div className="wrap">
-        <SectionHeading id="ritmo-title">{ritmo.title}</SectionHeading>
+  const listRef = useRef<HTMLOListElement>(null);
+  const [visible, setVisible] = useState(0);
 
-        <ol className="relative grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+  useEffect(() => {
+    const list = listRef.current;
+    if (!list || !("IntersectionObserver" in window)) {
+      setVisible(ritmo.steps.length);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            const idx = Number((e.target as HTMLElement).dataset["index"]);
+            setVisible((v) => Math.max(v, idx + 1));
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.4, rootMargin: "0px 0px -10% 0px" },
+    );
+    list.querySelectorAll("[data-index]").forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  const total = ritmo.steps.length;
+
+  return (
+    <section aria-labelledby="ritmo-title" className="sec sec-white">
+      <div className="wrap">
+        <SectionHead id="ritmo-title">{ritmo.title}</SectionHead>
+
+        <ol ref={listRef} className="col relative">
+          <span aria-hidden className="absolute bottom-6 left-[19px] top-6 w-px bg-lg-line" />
+          <span
+            aria-hidden
+            className="absolute left-[19px] top-6 w-px bg-lg-blue transition-[height] duration-700 ease-out"
+            style={{ height: `calc((100% - 3rem) * ${Math.max(0, visible - 1) / (total - 1)})` }}
+          />
           {ritmo.steps.map((s, i) => {
-            const live = i === 1; // o encontro ao vivo é o coração da semana
+            const on = i < visible;
             return (
-              <Reveal
-                as="li"
+              <li
                 key={s.title}
-                delay={i * 110}
-                className={cn("chamfer relative flex flex-col p-6 md:p-7", live ? "bg-ap-navy text-white" : "bg-white")}
+                data-index={i}
+                className="relative grid grid-cols-[40px_minmax(0,1fr)] gap-5 pb-10 last:pb-0 md:gap-7"
               >
-                <div className="flex items-center gap-4">
-                  <span
-                    aria-hidden
-                    className={cn(
-                      "relative flex h-9 w-9 shrink-0 rotate-45 items-center justify-center",
-                      live ? "bg-ap-electric" : "bg-ap-navy",
-                    )}
-                  >
-                    <span className="-rotate-45 text-[14px] font-extrabold text-white">{s.number}</span>
-                  </span>
-                  <h3 className={cn("text-[15px] font-extrabold uppercase leading-snug tracking-[0.08em]", live ? "text-white" : "text-ap-heading")}>
-                    {s.title}
-                  </h3>
+                <span
+                  aria-hidden
+                  className={`t-small relative z-10 flex h-10 w-10 items-center justify-center rounded-full font-semibold transition-colors duration-500 ${
+                    on ? "bg-lg-navy text-white" : "border border-lg-line bg-white text-lg-muted"
+                  }`}
+                >
+                  {s.number}
+                </span>
+                <div className="pt-1.5">
+                  {s.detail && <p className="t-label mb-1.5 text-lg-blue">{s.detail}</p>}
+                  <h3 className="t-card text-lg-navy">{s.title}</h3>
+                  <p className="t-body jt-sm mt-2">{s.description}</p>
                 </div>
-                {s.detail && (
-                  <p className={cn("mt-5 flex items-start gap-2 text-[13px] font-bold", live ? "text-ap-sky" : "text-ap-blue")}>
-                    <Diamond className={cn("mt-[5px]", live && "bg-ap-sky")} />
-                    {s.detail}
-                  </p>
-                )}
-                <p className={cn("mt-4 text-[15px] leading-[1.7]", live ? "text-white/85" : "text-ap-ink/85")}>{s.description}</p>
-              </Reveal>
+              </li>
             );
           })}
         </ol>
 
-        <Reveal className="mt-10 border-l-[3px] border-ap-blue bg-ap-mist px-6 py-6 md:mt-12 md:px-8">
-          <p className="text-[17px] leading-[1.7] text-ap-ink md:text-[19px]">
+        <Reveal className="col note mt-12">
+          <p className="t-body jt">
             <Emph text={ritmo.note} strong={["A Legado não é um curso."]} />
           </p>
         </Reveal>
