@@ -13,7 +13,7 @@ export default function Hero() {
   useEffect(() => {
     setHIndex(headlineIndex(hero.headlineVariants.length));
   }, []);
-  const headline = hero.headlineVariants[hIndex];
+  const headline = hero.headlineVariants[hIndex] ?? hero.headlineVariants[0]!;
 
   return (
     <header className="relative isolate overflow-hidden bg-white">
