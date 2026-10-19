@@ -37,7 +37,7 @@ export default function Mentor() {
           </Reveal>
 
           <Reveal as="p" className="t-body jt md:col-span-7">
-            <strong className="font-bold text-lg-navy">{mentor.name}</strong> — {mentor.bio}
+            <strong className="font-bold text-lg-navy">{mentor.name}</strong>, {mentor.bio}
           </Reveal>
         </div>
 

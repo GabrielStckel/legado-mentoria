@@ -23,7 +23,7 @@ export default function Hero() {
         <div className="wrap flex h-[72px] items-center justify-between md:h-[84px]">
           <img
             src={logo}
-            alt="Antiparadigma — Soluções Sistêmicas"
+            alt="Antiparadigma Soluções Sistêmicas"
             width={720}
             height={417}
             fetchPriority="high"

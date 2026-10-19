@@ -25,7 +25,7 @@ export default function CtaFinal() {
         <div className="wrap flex justify-center">
           <img
             src={logo}
-            alt="Antiparadigma — Soluções Sistêmicas"
+            alt="Antiparadigma Soluções Sistêmicas"
             loading="lazy"
             width={720}
             height={417}

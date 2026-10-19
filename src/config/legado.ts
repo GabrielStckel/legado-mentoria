@@ -1,9 +1,9 @@
-// Configurações editáveis da página (NÃO é copy — é infraestrutura).
+// Configurações editáveis da página (NÃO é copy; é infraestrutura).
 
 /** Link do checkout (Hotmart). Enquanto vazio, os botões levam para a seção #oferta. */
 export const CHECKOUT_URL = "";
 
-/** Condições de pagamento exibidas depois de "À vista ou parcelado — ". Vazio = não exibe nada. */
+/** Condições de pagamento exibidas abaixo de "À vista ou parcelado". Vazio = não exibe nada. */
 export const PAYMENT_TERMS = "";
 
 /** Para onde vai o botão do topo: "oferta" (rola até o preço) ou "checkout" (vai direto). */

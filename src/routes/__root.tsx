@@ -82,7 +82,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "A desordem que tu repetes — nos relacionamentos, no trabalho, no dinheiro — não nasceu em ti. Ela começou muitas gerações atrás. E tem solução.",
+          "A desordem que tu repetes, nos relacionamentos, no trabalho, no dinheiro, não nasceu em ti. Ela começou muitas gerações atrás. E tem solução.",
       },
       { name: "theme-color", content: "#0B1660" },
       { property: "og:type", content: "website" },

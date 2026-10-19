@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "A desordem que tu repetes — nos relacionamentos, no trabalho, no dinheiro — não nasceu em ti. Ela começou muitas gerações atrás. E tem solução.",
+          "A desordem que tu repetes, nos relacionamentos, no trabalho, no dinheiro, não nasceu em ti. Ela começou muitas gerações atrás. E tem solução.",
       },
       { property: "og:title", content: "Mentoria Legado em Grupo" },
       { property: "og:description", content: "Tu estás vivendo a vida de outra pessoa." },

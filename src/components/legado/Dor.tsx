@@ -26,7 +26,7 @@ export default function Dor() {
           </Reveal>
 
           <Reveal as="p" className="t-body jt mt-8">
-            <Emph text={dor.closing} strong={["Tu não estás doente — estás em desordem."]} />
+            <Emph text={dor.closing} strong={["Tu não estás doente, estás em desordem."]} />
           </Reveal>
         </div>
       </div>

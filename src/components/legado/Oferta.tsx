@@ -13,6 +13,7 @@ export default function Oferta() {
 
         <Reveal className="card mx-auto max-w-[34rem] text-lg-ink">
           <p className="t-h3 text-center">{oferta.product}</p>
+          <p className="t-label mt-1 text-center text-lg-muted">{oferta.duration}</p>
 
           <p className="mt-5 text-center font-bold leading-none text-lg-navy">
             <span className="mr-1.5 align-top text-[1.5rem] leading-[2.5]">{currency}</span>
@@ -21,7 +22,12 @@ export default function Oferta() {
           </p>
           <p className="t-small mt-2 text-center text-lg-muted">
             {oferta.paymentLabel}
-            {PAYMENT_TERMS && <> — {PAYMENT_TERMS}</>}
+            {PAYMENT_TERMS && (
+              <>
+                <br />
+                {PAYMENT_TERMS}
+              </>
+            )}
           </p>
 
           <ul className="mt-7 space-y-3 border-t border-lg-line pt-7">
