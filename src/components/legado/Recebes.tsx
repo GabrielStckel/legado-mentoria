@@ -17,20 +17,20 @@ export default function Recebes() {
     <section aria-labelledby="recebes-title" className="sec sec-paper">
       <div className="wrap">
         <SectionHead id="recebes-title">{recebes.title}</SectionHead>
-        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mx-auto grid max-w-[58rem] gap-4 md:grid-cols-2 md:gap-5">
           {recebes.items.map((item, i) => {
             const Icon = ICONS[i] ?? Radio;
             return (
               <Reveal
                 as="li"
                 key={item}
-                delay={(i % 3) * 70}
-                className="card flex items-start gap-4"
+                delay={(i % 2) * 60}
+                className="card flex items-center gap-4 py-5 md:py-6"
               >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-lg-paper text-lg-navy">
-                  <Icon aria-hidden className="h-5 w-5" strokeWidth={1.6} />
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-lg-tint text-lg-blue">
+                  <Icon aria-hidden className="h-6 w-6" strokeWidth={1.75} />
                 </span>
-                <p className="t-small pretty pt-2.5">
+                <p className="t-body min-w-0 flex-1">
                   <Emph text={item} strong={[LEADS[i] ?? ""]} />
                 </p>
               </Reveal>

@@ -1,5 +1,5 @@
 import { legado } from "@/content/legado";
-import { Emph, Reveal, SectionHead } from "./primitives";
+import { Emph, Num, Reveal, SectionHead } from "./primitives";
 import sphere from "@/assets/legado/simbolo-esfera.webp";
 
 export default function Legado() {
@@ -15,8 +15,8 @@ export default function Legado() {
           />
         </Reveal>
 
-        <Reveal className="mx-auto mt-12 flex max-w-[56rem] flex-col items-center gap-6 rounded-[4px] bg-lg-navy p-6 text-white sm:flex-row sm:gap-8 md:p-10">
-          <span className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-white">
+        <div className="mx-auto mt-10 max-w-[58rem]">
+          <Reveal className="card flex flex-col items-center gap-5 border-l-4 border-l-lg-navy sm:flex-row sm:gap-7">
             <img
               src={sphere}
               alt=""
@@ -24,29 +24,26 @@ export default function Legado() {
               loading="lazy"
               width={360}
               height={348}
-              className="h-[78%] w-[78%] object-contain"
+              className="h-16 w-16 shrink-0 object-contain md:h-[72px] md:w-[72px]"
             />
-          </span>
-          <p className="t-body jt-sm text-white/85">
-            <Emph
-              text={legado.conscius}
-              strong={["CONSCIUS"]}
-              strongClass="font-semibold tracking-[0.06em] text-white"
-            />
-          </p>
-        </Reveal>
+            <p className="t-body jt">
+              <Emph text={legado.conscius} strong={["CONSCIUS"]} />
+            </p>
+          </Reveal>
 
-        <ol className="mx-auto mt-5 grid max-w-[56rem] gap-5 sm:grid-cols-2">
-          {legado.movements.map((m, i) => (
-            <Reveal as="li" key={m.title} delay={(i % 2) * 80} className="card">
-              <span className="t-label text-lg-blue" aria-hidden>
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="t-card mt-2 text-lg-navy">{m.title}</h3>
-              <p className="t-small pretty mt-2 text-lg-ink/85">{m.description}</p>
-            </Reveal>
-          ))}
-        </ol>
+          <ol className="card mt-5 divide-y divide-lg-line p-0 md:p-0">
+            {legado.movements.map((m, i) => (
+              <li
+                key={m.title}
+                className="grid grid-cols-[2.5rem_minmax(0,1fr)] items-start gap-x-4 gap-y-2 px-6 py-5 md:grid-cols-[2.5rem_11rem_minmax(0,1fr)] md:items-center md:gap-x-6 md:px-8"
+              >
+                <Num>{i + 1}</Num>
+                <h3 className="t-h3 self-center">{m.title}</h3>
+                <p className="t-body jt col-span-2 md:col-span-1">{m.description}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </section>
   );

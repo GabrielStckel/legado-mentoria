@@ -7,14 +7,14 @@ export default function Dor() {
       <div className="wrap">
         <SectionHead id="dor-title">{dor.title}</SectionHead>
         <div className="col">
-          <Reveal as="ul" className="overflow-hidden rounded-[4px] border border-lg-line">
+          <Reveal as="ul" className="card divide-y divide-lg-line p-0 md:p-0">
             {dor.pairs.map((p) => (
               <li
                 key={p.know}
-                className="t-body flex flex-col gap-1 border-b border-lg-line px-5 py-4 last:border-b-0 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 sm:px-7"
+                className="t-body flex flex-col gap-1 px-6 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 md:px-8"
               >
                 <span>{p.know}</span>{" "}
-                <span className="shrink-0 font-semibold text-lg-navy">{p.dont}</span>
+                <span className="shrink-0 font-bold text-lg-navy">{p.dont}</span>
               </li>
             ))}
           </Reveal>

@@ -38,7 +38,7 @@ export default function StickyCta() {
         label={hero.cta}
         target={HERO_CTA_TARGET}
         position="sticky"
-        className="min-h-[50px] w-full py-3 text-[0.8125rem]"
+        className="min-h-[50px] w-full py-3 text-base"
       />
     </div>
   );

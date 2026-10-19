@@ -1,5 +1,5 @@
 import { grupo } from "@/content/legado";
-import { Diamond, Reveal, SectionHead } from "./primitives";
+import { Reveal, SectionHead } from "./primitives";
 
 export default function Grupo() {
   return (
@@ -13,13 +13,8 @@ export default function Grupo() {
             </Reveal>
           ))}
         </div>
-        <Reveal className="col mt-12 text-center md:mt-14">
-          <div className="mb-6 flex items-center justify-center gap-4" aria-hidden>
-            <span className="h-px w-16 bg-lg-line" />
-            <Diamond />
-            <span className="h-px w-16 bg-lg-line" />
-          </div>
-          <p className="t-quote text-lg-navy">{grupo.quote}</p>
+        <Reveal className="col mt-10 border-t border-lg-line pt-10">
+          <p className="t-quote text-center">{grupo.quote}</p>
         </Reveal>
       </div>
     </section>

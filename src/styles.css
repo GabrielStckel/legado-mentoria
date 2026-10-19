@@ -1,22 +1,19 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import "@fontsource-variable/inter";
-@import "@fontsource/playfair-display/500.css";
-@import "@fontsource/playfair-display/500-italic.css";
+@import "@fontsource-variable/source-sans-3";
 
 @theme {
-  --font-sans: "Inter Variable", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
-  --color-lg-night: #070d35;
+  --font-sans:
+    "Source Sans 3 Variable", "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
   --color-lg-navy: #0b1660;
-  --color-lg-navy-soft: #1b2a7a;
   --color-lg-blue: #1550e6;
   --color-lg-blue-dark: #0f3fc0;
-  --color-lg-ink: #1f2437;
-  --color-lg-muted: #5b6276;
-  --color-lg-line: #e2e6ef;
-  --color-lg-paper: #f6f7fa;
+  --color-lg-ink: #1e2333;
+  --color-lg-muted: #586074;
+  --color-lg-line: #e2e6ee;
+  --color-lg-paper: #f4f6fa;
+  --color-lg-tint: #eaf0fd;
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -156,20 +153,19 @@
 }
 
 /* ==========================================================================
-   Mentoria Legado — sistema visual institucional
-   Tipografia: Playfair Display (títulos) + Inter (texto). Escala fixa abaixo:
-   use SOMENTE estas classes de texto nos componentes.
+   Mentoria Legado — sistema visual
+   Uma única família (Source Sans 3). Títulos em negrito, texto justificado,
+   cores chapadas (sem degradê), botões sólidos. Use SOMENTE as classes abaixo.
    ========================================================================== */
 :root {
-  --lg-night: #070d35;
   --lg-navy: #0b1660;
-  --lg-navy-soft: #1b2a7a;
   --lg-blue: #1550e6;
   --lg-blue-dark: #0f3fc0;
-  --lg-ink: #1f2437;
-  --lg-muted: #5b6276;
-  --lg-line: #e2e6ef;
-  --lg-paper: #f6f7fa;
+  --lg-ink: #1e2333;
+  --lg-muted: #586074;
+  --lg-line: #e2e6ee;
+  --lg-paper: #f4f6fa;
+  --lg-tint: #eaf0fd;
 }
 
 html {
@@ -181,85 +177,79 @@ body {
   background: #fff;
   color: var(--lg-ink);
   font-family: var(--font-sans);
+  font-variant-numeric: lining-nums tabular-nums;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-feature-settings: "cv11", "ss01";
 }
 ::selection {
   background: var(--lg-navy);
   color: #fff;
 }
 :focus-visible {
-  outline: 2px solid var(--lg-blue);
+  outline: 3px solid var(--lg-blue);
   outline-offset: 3px;
 }
 
 @layer components {
   /* ---------- Escala tipográfica (única) ---------- */
-  .t-display {
-    font-family: var(--font-serif);
-    font-weight: 500;
-    font-size: clamp(2.375rem, 1.55rem + 3.3vw, 4rem);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
+  .t-h1 {
+    font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    color: var(--lg-navy);
     text-wrap: balance;
   }
-  .t-title {
-    font-family: var(--font-serif);
-    font-weight: 500;
-    font-size: clamp(1.875rem, 1.45rem + 1.7vw, 2.625rem);
-    line-height: 1.18;
+  .t-h2 {
+    font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--lg-navy);
     text-wrap: balance;
+  }
+  .t-h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--lg-navy);
   }
   .t-quote {
-    font-family: var(--font-serif);
-    font-weight: 500;
-    font-style: italic;
-    font-size: clamp(1.375rem, 1.15rem + 0.9vw, 1.875rem);
-    line-height: 1.4;
+    font-size: clamp(1.375rem, 1.15rem + 0.9vw, 1.75rem);
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--lg-navy);
     text-wrap: balance;
   }
-  .t-card {
-    font-family: var(--font-serif);
-    font-weight: 500;
-    font-size: clamp(1.25rem, 1.15rem + 0.35vw, 1.4375rem);
-    line-height: 1.25;
-  }
   .t-lead {
-    font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
-    line-height: 1.75;
+    font-size: 1.1875rem;
+    line-height: 1.65;
   }
   .t-body {
-    font-size: 1rem;
-    line-height: 1.8;
-  }
-  .t-small {
-    font-size: 0.9375rem;
+    font-size: 1.0625rem;
     line-height: 1.7;
   }
-  .t-display,
-  .t-title,
-  .t-quote,
-  .t-card {
-    font-variant-numeric: lining-nums proportional-nums;
-  }
-  .pretty {
-    text-wrap: pretty;
+  .t-small {
+    font-size: 1rem;
+    line-height: 1.6;
   }
   .t-label {
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     font-weight: 600;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     line-height: 1.4;
   }
   @media (min-width: 768px) {
+    .t-lead {
+      font-size: 1.3125rem;
+    }
     .t-body {
-      font-size: 1.0625rem;
+      font-size: 1.125rem;
     }
   }
 
-  /* Texto justificado (com hifenização em pt-BR) */
+  /* Texto justificado com hifenização em português */
   .jt {
     text-align: justify;
     text-justify: inter-word;
@@ -267,28 +257,11 @@ body {
     -webkit-hyphens: auto;
     overflow-wrap: break-word;
   }
-  .jt-sm {
-    text-wrap: pretty;
-  }
-  @media (min-width: 640px) {
-    .jt-sm {
-      text-align: justify;
-      text-justify: inter-word;
-      hyphens: auto;
-      -webkit-hyphens: auto;
-    }
-  }
-  .jt-center {
-    text-align: justify;
-    text-align-last: center;
-    hyphens: auto;
-    -webkit-hyphens: auto;
-  }
 
-  /* ---------- Estrutura de seção (igual em toda a página) ---------- */
+  /* ---------- Estrutura ---------- */
   .wrap {
     width: 100%;
-    max-width: 1120px;
+    max-width: 1140px;
     margin-inline: auto;
     padding-inline: 1.25rem;
   }
@@ -298,17 +271,16 @@ body {
     }
   }
   .col {
-    max-width: 46rem;
+    max-width: 47.5rem;
     margin-inline: auto;
   }
 
   .sec {
     padding-block: 4.5rem;
-    position: relative;
   }
   @media (min-width: 768px) {
     .sec {
-      padding-block: 6.5rem;
+      padding-block: 6rem;
     }
   }
   .sec-white {
@@ -317,125 +289,128 @@ body {
   .sec-paper {
     background: var(--lg-paper);
   }
-  .sec-dark {
-    background: linear-gradient(180deg, var(--lg-night) 0%, var(--lg-navy) 100%);
+  .sec-navy {
+    background: var(--lg-navy);
+    color: #fff;
+  }
+  .sec-navy .t-h2,
+  .sec-navy .t-h3,
+  .sec-navy .t-quote {
     color: #fff;
   }
 
   .sec-head {
-    max-width: 46rem;
-    margin: 0 auto 2.75rem;
+    max-width: 47.5rem;
+    margin: 0 auto 2.5rem;
     text-align: center;
   }
   @media (min-width: 768px) {
     .sec-head {
-      margin-bottom: 3.5rem;
+      margin-bottom: 3rem;
     }
   }
-  .sec-head h2,
-  .sec-head h1 {
-    color: var(--lg-navy);
-    margin: 0;
-  }
-  .sec-dark .sec-head h2,
-  .sec-dark .sec-head h1 {
-    color: #fff;
-  }
-  .rule {
+  .bar {
     display: block;
-    width: 48px;
-    height: 2px;
+    width: 44px;
+    height: 3px;
+    border-radius: 2px;
     background: var(--lg-blue);
-    margin: 1.25rem auto 0;
+    margin: 1.1rem auto 0;
   }
-  .sec-dark .rule {
-    background: rgba(255, 255, 255, 0.45);
+  .sec-navy .bar {
+    background: #fff;
   }
 
-  /* ---------- Superfícies ---------- */
+  /* ---------- Componentes ---------- */
   .card {
     background: #fff;
     border: 1px solid var(--lg-line);
-    border-radius: 4px;
+    border-radius: 8px;
     padding: 1.75rem;
-    transition:
-      border-color 0.3s ease,
-      box-shadow 0.3s ease;
   }
   @media (min-width: 768px) {
     .card {
       padding: 2rem;
     }
   }
-  .card:hover {
-    border-color: rgba(21, 80, 230, 0.28);
-    box-shadow: 0 2px 16px -6px rgba(11, 22, 96, 0.12);
+  .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+    background: var(--lg-navy);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.0625rem;
   }
   .note {
-    border-left: 2px solid var(--lg-blue);
-    background: var(--lg-paper);
+    background: var(--lg-tint);
+    border-left: 4px solid var(--lg-blue);
+    border-radius: 0 8px 8px 0;
     padding: 1.25rem 1.5rem;
-    border-radius: 0 4px 4px 0;
   }
-  .sec-paper .note {
-    background: #fff;
-  }
-  .sec-dark .note {
-    background: rgba(255, 255, 255, 0.06);
-    border-left-color: rgba(255, 255, 255, 0.5);
-  }
-  .diamond {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    transform: rotate(45deg);
-    background: var(--lg-blue);
-    flex: none;
+  .sec-navy .note {
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: #fff;
   }
 
-  /* ---------- Botão ---------- */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 0.6rem;
     min-height: 56px;
-    padding: 0.9rem 2rem;
-    border-radius: 2px;
+    padding: 0.85rem 1.75rem;
+    border-radius: 6px;
     background: var(--lg-blue);
     color: #fff;
     text-decoration: none;
     text-align: center;
-    font-size: 0.875rem;
+    font-size: 1.0625rem;
     font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    line-height: 1.3;
-    box-shadow: 0 12px 28px -14px rgba(11, 22, 96, 0.6);
-    transition:
-      background-color 0.25s ease,
-      transform 0.15s ease;
+    line-height: 1.25;
+    transition: background-color 0.2s ease;
   }
   .btn:hover {
     background: var(--lg-blue-dark);
   }
-  .btn:active {
-    transform: translateY(1px);
-  }
-  .sec-dark .btn:focus-visible,
   .btn:focus-visible {
-    outline: 2px solid #fff;
+    outline: 3px solid var(--lg-blue);
     outline-offset: 3px;
-    box-shadow: 0 0 0 5px var(--lg-blue);
+  }
+  .sec-navy .btn {
+    background: #fff;
+    color: var(--lg-navy);
+  }
+  .sec-navy .btn:hover {
+    background: var(--lg-tint);
+  }
+  .sec-navy .card .btn {
+    background: var(--lg-blue);
+    color: #fff;
+  }
+  .sec-navy .card .btn:hover {
+    background: var(--lg-blue-dark);
+  }
+  .sec-navy .card .t-h3 {
+    color: var(--lg-navy);
+  }
+  .btn-sm {
+    min-height: 44px;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.9375rem;
   }
 
   /* ---------- Revelação suave ---------- */
   .reveal {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(10px);
     transition:
-      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity 0.6s ease,
+      transform 0.6s ease;
   }
   .reveal.is-visible {
     opacity: 1;
@@ -447,10 +422,10 @@ body {
     overflow: hidden;
   }
   .faq-content[data-state="open"] {
-    animation: accordion-down 0.25s ease-out;
+    animation: accordion-down 0.22s ease-out;
   }
   .faq-content[data-state="closed"] {
-    animation: accordion-up 0.25s ease-out;
+    animation: accordion-up 0.22s ease-out;
   }
 }
 
@@ -470,33 +445,6 @@ body {
     height: 0;
   }
 }
-@keyframes beam-pulse {
-  0%,
-  100% {
-    opacity: 0.5;
-    transform: translateX(-50%) scaleY(1);
-  }
-  50% {
-    opacity: 0.7;
-    transform: translateX(-50%) scaleY(1.01);
-  }
-}
-@keyframes diagonal-fall {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0;
-  }
-  10% {
-    opacity: var(--p-opacity, 0.4);
-  }
-  80% {
-    opacity: var(--p-opacity, 0.4);
-  }
-  100% {
-    transform: translate(var(--end-x), 55vh) scale(0.3);
-    opacity: 0;
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -506,8 +454,5 @@ body {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
-  }
-  .motion-safe-only {
-    display: none !important;
   }
 }
