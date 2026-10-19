@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the TanStack `/` route as the entry point and compose the supplied sequential sections in the existing Index component; this preserves framework routing and the user's staged source delivery.
