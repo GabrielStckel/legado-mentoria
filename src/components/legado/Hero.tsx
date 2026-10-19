@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { CalendarDays } from "lucide-react";
 import { hero } from "@/content/legado";
 import { HERO_CTA_TARGET } from "@/config/legado";
@@ -8,7 +9,11 @@ import shardTop from "@/assets/legado/shard-topo-esquerda.webp";
 import shardBottom from "@/assets/legado/shard-base-direita.webp";
 
 export default function Hero() {
-  const headline = hero.headlineVariants[headlineIndex(hero.headlineVariants.length)];
+  const [hIndex, setHIndex] = useState(0);
+  useEffect(() => {
+    setHIndex(headlineIndex(hero.headlineVariants.length));
+  }, []);
+  const headline = hero.headlineVariants[hIndex];
 
   return (
     <header className="relative isolate overflow-hidden bg-white">
@@ -80,4 +85,3 @@ export default function Hero() {
     </header>
   );
 }
-```
