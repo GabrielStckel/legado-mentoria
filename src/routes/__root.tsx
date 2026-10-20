@@ -86,14 +86,15 @@ export const Route = createRootRoute({
       },
       { name: "theme-color", content: "#0B1660" },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://legadomentoria.com.br/" },
       { property: "og:locale", content: "pt_BR" },
       { property: "og:title", content: "Mentoria Legado em Grupo" },
       { property: "og:description", content: "Tu estás vivendo a vida de outra pessoa." },
-      { property: "og:image", content: "https://legado-mentoria.lovable.app/og-legado.jpg" },
+      { property: "og:image", content: "https://legadomentoria.com.br/og-legado.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "https://legado-mentoria.lovable.app/og-legado.jpg" },
+      { name: "twitter:image", content: "https://legadomentoria.com.br/og-legado.jpg" },
     ],
     links: [
       // Fonte do texto pré-carregada: evita troca visível de fonte no primeiro carregamento

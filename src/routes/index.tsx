@@ -13,9 +13,10 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Mentoria Legado em Grupo" },
       { property: "og:description", content: "Tu estás vivendo a vida de outra pessoa." },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://legado-mentoria.lovable.app/og-legado.jpg" },
+      { property: "og:image", content: "https://legadomentoria.com.br/og-legado.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://legadomentoria.com.br/" }],
   }),
   component: Index,
 });
