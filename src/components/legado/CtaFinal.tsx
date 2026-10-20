@@ -1,6 +1,6 @@
 import { ctaFinal } from "@/content/legado";
 import { CtaButton, Reveal } from "./primitives";
-import logo from "@/assets/legado/logo-antiparadigma.webp";
+import logo from "@/assets/legado/logo-antiparadigma-260.webp";
 
 export default function CtaFinal() {
   return (
@@ -27,8 +27,8 @@ export default function CtaFinal() {
             src={logo}
             alt="Antiparadigma Soluções Sistêmicas"
             loading="lazy"
-            width={720}
-            height={417}
+            width={260}
+            height={151}
             className="h-auto w-[120px]"
           />
         </div>

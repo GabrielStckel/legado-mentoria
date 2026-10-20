@@ -1,6 +1,6 @@
 import { legado } from "@/content/legado";
 import { Emph, Num, Reveal, SectionHead } from "./primitives";
-import sphere from "@/assets/legado/simbolo-esfera.webp";
+import sphere from "@/assets/legado/simbolo-esfera-160.webp";
 
 export default function Legado() {
   return (
@@ -22,8 +22,8 @@ export default function Legado() {
               alt=""
               aria-hidden
               loading="lazy"
-              width={360}
-              height={348}
+              width={160}
+              height={155}
               className="h-16 w-16 shrink-0 object-contain md:h-[72px] md:w-[72px]"
             />
             <p className="t-body jt">

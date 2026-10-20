@@ -9,9 +9,6 @@ export const PAYMENT_TERMS = "";
 /** Para onde vai o botão do topo: "oferta" (rola até o preço) ou "checkout" (vai direto). */
 export const HERO_CTA_TARGET: "oferta" | "checkout" = "oferta";
 
-/** Foto do Jonas (importe de src/assets e coloque aqui). Vazio = painel de marca no lugar. */
-export const MENTOR_PHOTO = "";
-
 /** Depoimentos reais de mentorados. Lista vazia = bloco de depoimentos não aparece. */
 export const TESTIMONIALS: { name: string; text: string; photo?: string }[] = [];
 

@@ -1,7 +1,7 @@
 import { mentor } from "@/content/legado";
-import { MENTOR_PHOTO, TESTIMONIALS } from "@/config/legado";
+import { TESTIMONIALS } from "@/config/legado";
 import { Reveal, SectionHead } from "./primitives";
-import logo from "@/assets/legado/logo-antiparadigma.webp";
+import { JonasPhoto } from "./JonasPhoto";
 
 export default function Mentor() {
   return (
@@ -11,28 +11,11 @@ export default function Mentor() {
 
         <div className="mx-auto grid max-w-[58rem] items-center gap-10 md:grid-cols-12 md:gap-12">
           <Reveal className="md:col-span-5">
-            <div className="mx-auto aspect-[4/5] w-full max-w-[22rem] overflow-hidden rounded-lg border border-lg-line bg-lg-paper">
-              {MENTOR_PHOTO ? (
-                <img
-                  src={MENTOR_PHOTO}
-                  alt={mentor.name}
-                  loading="lazy"
-                  className="h-full w-full object-cover object-[center_20%]"
-                />
-              ) : (
-                // Sem foto ainda: logo da marca (some quando MENTOR_PHOTO for preenchido)
-                <div className="flex h-full w-full items-center justify-center">
-                  <img
-                    src={logo}
-                    alt=""
-                    aria-hidden
-                    loading="lazy"
-                    width={720}
-                    height={417}
-                    className="w-[58%] opacity-90"
-                  />
-                </div>
-              )}
+            <div className="mx-auto aspect-square w-full max-w-[22rem] overflow-hidden rounded-lg bg-lg-sky">
+              <JonasPhoto
+                sizes="(min-width: 768px) 352px, calc(100vw - 2.5rem)"
+                className="h-full w-full object-contain object-bottom"
+              />
             </div>
           </Reveal>
 
