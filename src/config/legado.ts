@@ -1,7 +1,7 @@
 // Configurações editáveis da página (NÃO é copy; é infraestrutura).
 
 /** Link do checkout (Hotmart). Enquanto vazio, os botões levam para a seção #oferta. */
-export const CHECKOUT_URL = "";
+export const CHECKOUT_URL = "https://pay.hotmart.com/S107951279J?off=lde5e2cu";
 
 /** Condições de pagamento exibidas abaixo de "À vista ou parcelado". Vazio = não exibe nada. */
 export const PAYMENT_TERMS = "";

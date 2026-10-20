@@ -5,12 +5,12 @@ import logo from "@/assets/legado/logo-antiparadigma.webp";
 export default function CtaFinal() {
   return (
     <>
-      <section id="cta-final" aria-label={ctaFinal.signature} className="sec sec-paper">
+      <section id="cta-final" aria-label={ctaFinal.signature} className="sec sec-navy sec-royal">
         <div className="wrap">
           <Reveal className="mx-auto max-w-[44rem] text-center">
             <p className="t-h2">{ctaFinal.line}</p>
             <span className="bar" aria-hidden />
-            <p className="t-quote mt-5 text-lg-blue">{ctaFinal.signature}</p>
+            <p className="t-quote mt-5 text-white/85">{ctaFinal.signature}</p>
             <CtaButton
               id="final-cta"
               label={ctaFinal.cta}

@@ -5,15 +5,15 @@ import { cn } from "@/lib/utils";
 
 export default function Cronograma() {
   return (
-    <section aria-labelledby="cronograma-title" className="sec sec-white">
+    <section aria-labelledby="cronograma-title" className="sec sec-navy">
       <div className="wrap">
         <SectionHead id="cronograma-title">{cronograma.title}</SectionHead>
         <Reveal className="col flex items-start justify-center gap-3 text-center">
           <CalendarDays
             aria-hidden
-            className="mt-1 hidden h-5 w-5 shrink-0 text-lg-blue sm:block"
+            className="mt-1 hidden h-5 w-5 shrink-0 text-white/80 sm:block"
           />
-          <p className="t-body font-semibold text-lg-navy">{cronograma.info}</p>
+          <p className="t-body font-semibold text-white">{cronograma.info}</p>
         </Reveal>
 
         <ol className="mx-auto mt-10 grid max-w-[58rem] grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
@@ -24,7 +24,7 @@ export default function Cronograma() {
                 key={d}
                 className={cn(
                   "flex flex-col items-center rounded-lg border px-3 py-4 text-center",
-                  first ? "border-lg-navy bg-lg-navy text-white" : "border-lg-line bg-white",
+                  first ? "border-lg-blue bg-lg-blue text-white" : "border-white bg-white",
                 )}
               >
                 <span
@@ -56,7 +56,7 @@ export default function Cronograma() {
 
         <Reveal className="col note mt-10">
           <p className="t-body jt">
-            <Emph text={cronograma.note} strong={["Faltou?"]} />
+            <Emph text={cronograma.note} strong={["Faltou?"]} strongClass="font-bold text-white" />
           </p>
         </Reveal>
       </div>

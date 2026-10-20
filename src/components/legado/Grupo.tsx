@@ -3,7 +3,7 @@ import { Reveal, SectionHead } from "./primitives";
 
 export default function Grupo() {
   return (
-    <section aria-labelledby="grupo-title" className="sec sec-white">
+    <section aria-labelledby="grupo-title" className="sec sec-navy sec-royal">
       <div className="wrap">
         <SectionHead id="grupo-title">{grupo.title}</SectionHead>
         <div className="col space-y-5">
@@ -13,7 +13,7 @@ export default function Grupo() {
             </Reveal>
           ))}
         </div>
-        <Reveal className="col mt-10 border-t border-lg-line pt-10">
+        <Reveal className="col mt-10 border-t border-white/25 pt-10">
           <p className="t-quote text-center">{grupo.quote}</p>
         </Reveal>
       </div>

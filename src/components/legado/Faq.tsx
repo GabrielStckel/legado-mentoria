@@ -5,7 +5,7 @@ import { Reveal } from "./primitives";
 
 export default function Faq() {
   return (
-    <section aria-label="FAQ" className="sec sec-white">
+    <section aria-label="FAQ" className="sec sec-paper">
       <div className="wrap">
         <Reveal className="col">
           <AccordionPrimitive.Root type="single" collapsible className="space-y-3">

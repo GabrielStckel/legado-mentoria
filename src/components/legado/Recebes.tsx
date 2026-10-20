@@ -14,7 +14,7 @@ const LEADS = [
 
 export default function Recebes() {
   return (
-    <section aria-labelledby="recebes-title" className="sec sec-paper">
+    <section aria-labelledby="recebes-title" className="sec sec-sky">
       <div className="wrap">
         <SectionHead id="recebes-title">{recebes.title}</SectionHead>
         <ul className="mx-auto grid max-w-[58rem] gap-4 md:grid-cols-2 md:gap-5">

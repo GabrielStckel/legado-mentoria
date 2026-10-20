@@ -39,7 +39,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <header className="bg-lg-paper">
+      <header className="bg-lg-sky">
         <div className="wrap grid items-center gap-10 py-14 md:py-20 lg:grid-cols-12 lg:gap-14">
           {/* Coluna principal */}
           <div className="lg:col-span-7">
