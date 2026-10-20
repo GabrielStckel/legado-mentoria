@@ -29,7 +29,7 @@ export default function Cronograma() {
               >
                 <span
                   aria-hidden
-                  className={cn("t-label", first ? "text-white/75" : "text-lg-muted")}
+                  className={cn("t-label", first ? "text-white" : "text-lg-muted")}
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -44,7 +44,7 @@ export default function Cronograma() {
                 </span>
                 <span
                   aria-hidden
-                  className={cn("t-small", first ? "text-white/75" : "text-lg-muted")}
+                  className={cn("t-small", first ? "text-white" : "text-lg-muted")}
                 >
                   {d.slice(6)}
                 </span>
